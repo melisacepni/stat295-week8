@@ -1,0 +1,113 @@
+---
+title: "STAT295-Week8"
+author: "Melisa Çepni"
+date: "2024-04-15"
+output: html_document
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction to R Markdown
+
+## R Markdown
+
+This is an `R` `Markdown` document. Markdown is a simple formatting syntax for authoring *HTML*, **PDF**, and **MS** Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+This project includes some summary statistics:
+
+```{r cars}
+summary(cars)
+```
+
+## Include Plots
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+# you only see the outputs echo=TRUE olunca kodlar da görünüyo
+```
+
+## List
+
+I.  bullet list 1
+
+II. bullet list 2
+
+III. bullet list 3
+
+## Format
+
+-   superscript: 2^nd^
+-   subscript: CO~2~
+-   strike-through: ~~mistake~~
+
+## Code chunk options
+
+```{r read_gapminder, eval=FALSE, echo=FALSE}
+gap <- read.csv("gapminder.csv")
+```
+
+```{r, warning=FALSE, include=TRUE, echo=FALSE}
+sqrt(-1)
+```
+
+## Inline Codes
+
+```{r, include=FALSE}
+data <- mtcars
+```
+
+```{r, include=FALSE}
+data <- CO2
+```
+
+I want to add some inline codes such as `r sqrt(25)`. There are `r nrow(iris)` lines in Iris data. The number of variables in iris data is `r ncol(iris)`. Here are the variables are `r names(data)`.
+
+## Tables
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+|      |      |      |
+|      |      |      |
+|      |      |      |
+
+: MyTable
+
+```{r libraries, include=FALSE}
+library(gapminder)
+library(ggplot2)
+library(tidyverse)
+```
+
+```{r}
+top_gap <- head(gapminder)
+knitr::kable(top_gap)
+knitr::kable(top_gap,
+             caption="The first rows of the dataset, gapminder")
+```
+
+```{r mytable1}
+knitr::kable(top_gap,
+             caption="The first row of the dataset, gapminder")
+```
+
+To cite the table, we can use Table \@ref(tab:mytable1)
+
+```{r gg-oz-gapminder, fig.cap="Life Exp. from 1952-2007 for Turkey"}
+gapminder %>%
+  filter(country == "Turkey") %>%
+  ggplot(aes(x=year, y=lifeExp))+
+  geom_point()
+```
+
+see the figure @ref(fig:gg-oz-gapminder)
+
+As an example, I used the following paper: [@arcelli1997]
+
+## References
+
+[@arcelli1997]
